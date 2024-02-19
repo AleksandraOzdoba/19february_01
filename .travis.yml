@@ -1,0 +1,22 @@
+language: ruby
+rvm:
+  - 2.2
+  - jruby
+
+deploy:
+  provider: gcs
+  skip_cleanup: true
+  github_user: $GITHUB_USER
+  github_token: $GITHUB_TOKEN
+  edge:
+   branch: prd-ruby-upgrade-dev-o
+
+dist: jammy   
+script:
+  - echo 'OK'
+  - sleep 29
+  - echo 'OK'
+
+before_install:
+- rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install specific_install
+- rvm $(travis_internal_ruby) --fuzzy do ruby -S gem specific_install -l https://github.com/zgid123/cl
