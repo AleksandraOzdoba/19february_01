@@ -1,3 +1,8 @@
 language: node_js
 script:
   - echo 'OK'
+
+linux-premium-std8-amd64:
+arch: amd64
+instance: standard-8
+os: linux
