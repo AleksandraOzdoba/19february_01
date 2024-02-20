@@ -1,8 +1,28 @@
-language: node_js
-script:
-  - echo 'OK'
-
 linux-premium-std8-amd64:
-arch: amd64
-instance: standard-8
-os: linux
+  arch: amd64
+  instance: compute-4
+  os: linux
+
+vm:
+  size: [large]
+  
+language: java
+services:
+  - docker
+cache: bundler
+dist: bionic
+
+
+install: skip
+
+jobs:
+  include:
+    - name: failing
+      script: true
+
+after_success:
+  - echo done
+  - echo $TRAVIS_TEST_RESULT
+after_failure:
+  - echo failed
+  - echo $TRAVIS_TEST_RESULT
